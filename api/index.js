@@ -1,12 +1,9 @@
-const express = require('express')
+const express = require('express');
+const routes = require('./routes/index');
 
 const app = express();
-app.use(express.json());
-
 const port = 3000;
 
-app.get('/', (req, res) => {
-  res.status(200).json({ message: 'Hello' });
-})
+routes(app);
 
 app.listen(port, () => console.log(`Listening the port: ${port}`));
