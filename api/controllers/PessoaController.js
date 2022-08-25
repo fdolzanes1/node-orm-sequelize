@@ -111,6 +111,31 @@ class PessoaController {
       return res.status(500).json( {"error": err} );
     }
   }
+
+  static async updateMatricula(req, res) {
+    const {estudante_id, matricula_id} = req.params;
+    const novaInfos = req.body;
+    try {
+      await db.Matriculas.update(
+        novaInfos,{ 
+          where : { 
+            id: Number(matricula_id), estudante_id: Number(estudante_id)
+          }
+        }
+      )
+      const matriculaAtualizado = await db.Matriculas.findOne({ 
+        where: {
+          id: Number(matricula_id)
+        } 
+      });
+      return res.status(200).json({
+        mensagem:"Matricula Atualizada com Sucesso",
+        matriculaAtualizado
+      });
+    } catch (err) {
+      return res.status(500).json( {"error": err} );
+    }
+  }
 }
 
 module.exports = PessoaController;
