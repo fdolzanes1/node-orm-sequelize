@@ -136,6 +136,22 @@ class PessoaController {
       return res.status(500).json( {"error": err} );
     }
   }
+
+  static async deleteMatricula(req, res) {
+    const {estudante_id, matricula_id} = req.params;
+    try {
+      await db.Matriculas.destroy({ 
+        where : { 
+          id: Number(matricula_id), estudante_id: Number(estudante_id)
+        }
+      })
+      return res.status(200).json({
+        mensagem:"Matricula Excluida com Sucesso",
+      });
+    } catch (err) {
+      return res.status(500).json( {"error": err} );
+    }
+  }
 }
 
 module.exports = PessoaController;

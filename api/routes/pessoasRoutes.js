@@ -11,6 +11,7 @@ router
   .post('/pessoas/:estudante_id/matricula/', pessoaController.createMatricula)
   .put('/pessoas/:id', pessoaController.update)
   .put('/pessoas/:estudante_id/matricula/:matricula_id', pessoaController.updateMatricula)
-  .delete('/pessoas/:id', pessoaController.delete);
+  .delete('/pessoas/:id', pessoaController.delete)
+  .delete('/pessoas/:estudante_id/matricula/:matricula_id', pessoaController.deleteMatricula);
 
 module.exports = router;
